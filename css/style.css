@@ -6,7 +6,7 @@
 html {
     user-select: none;
     font-size: 50px;
-    font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
+    font-family: 'Source Han Serif', 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
 }
 
 [v-cloak] {
