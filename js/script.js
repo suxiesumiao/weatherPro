@@ -48,11 +48,17 @@ let app = new Vue({
         },
         // 获取周信息
         getWeek: function(number) {
-            let week = new Date(number * 1000).toDateString().split(' ')
+            let tempTime = new Date(number * 1000)
+            let week = tempTime.toDateString().split(' ')
             return {
+                // 周名称
                 weekName: this.weekTable[week[0]],
+                // 日期
                 date: week[1] + "-" + week[2],
-                singleDate: week[2]
+                // 单个日期 几号
+                singleDate: week[2],
+                // 精确到几点发布
+                presTime: tempTime.toLocaleTimeString()
             }
         },
         initArray: function(array, number) {

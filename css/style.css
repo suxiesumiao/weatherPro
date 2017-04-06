@@ -150,12 +150,16 @@ header {
 
 .weather-items {}
 
-.weather-item {
+.weather-items .weather-item {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid red;
+    border-bottom: 1px dashed #F88A20;
     height: 8vh;
+}
+
+.weather-items .weather-item:last-child {
+    border-bottom: 1px solid #fff;
 }
 
 .weather-item-details,
