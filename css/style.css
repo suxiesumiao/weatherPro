@@ -34,7 +34,6 @@ header {
 .main-weather-pic {
     width: 160px;
     height: 160px;
-    border: 1px solid red;
 }
 
 .descbibe {
@@ -181,7 +180,7 @@ header {
 }
 
 .weather-item-desc {
-    color: #233;
+    color: #666;
 }
 
 
@@ -194,8 +193,8 @@ header {
     background-color: #EEFF41;
     font-size: 16px;
     font-size: .5rem;
-    text-align: left;
+    color: #171717;
     height: 40px;
     height: 6vh;
-    box-shadow: 0 5px 10px #999;
+    box-shadow: 0 5px 20px #999;
 }

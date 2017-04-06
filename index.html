@@ -67,7 +67,7 @@
                 <div class="container" v-for="items in hourlyWeatherData">
                     <div class="week-title">
                         <span>{{ getWeek(items.hourly[0].dt).weekName }}</span>
-                        <time>1231</time>
+                        <time>{{ getWeek(items.hourly[0].dt).date }}</time>
                     </div>
                     <div v-for="item in items.hourly" class="weather-item">
                         <img src="images/clouds.svg" alt="">
