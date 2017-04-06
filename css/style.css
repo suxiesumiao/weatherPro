@@ -9,10 +9,6 @@ html {
     font-family: 'Source Han Serif', 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
 }
 
-body {
-    position: relative;
-}
-
 [v-cloak] {
     display: none !important;
 }
@@ -28,6 +24,12 @@ header {
     background: #00BBD2;
 }
 
+@media all and (min-width: 768px) and (max-width: 1023px) {
+    body {
+        background-color: #999;
+    }
+}
+
 @media all and (min-width: 1024px) {
     html {
         font-size: 30px;
@@ -36,11 +38,6 @@ header {
         position: fixed;
         width: 32%;
         height: 100vh;
-    }
-    main {
-        position: absolute;
-        width: 68%;
-        right: 0;
     }
 }
 
@@ -68,6 +65,18 @@ header {
 .weathernote {
     font-size: .3rem;
     text-transform: uppercase;
+}
+
+@media all and (min-width: 1024px) {
+    .main-describe {
+        flex-direction: column;
+    }
+    .temperature {
+        font-size: 2.5rem;
+    }
+    .weathernote {
+        font-size: 1.6rem;
+    }
 }
 
 .items {
@@ -172,6 +181,35 @@ header {
     top: .2rem;
 }
 
+@media all and (min-width: 768px) {
+    .items {
+        justify-content: center;
+        transform: translateY(-30PX);
+    }
+    .item {
+        margin: 0 10px;
+    }
+}
+
+@media all and (min-width: 1024px) {
+    .items {
+        position: fixed;
+        height: 100vh;
+        left: 28%;
+        bottom: 100px;
+        flex-direction: column;
+        transform: translateY(20px);
+    }
+    .item>.icon {
+        left: -6px;
+        left: -1vmax;
+    }
+    .calendar>i {
+        font-size: .6rem;
+        top: .4rem;
+    }
+}
+
 .weather-items {}
 
 .weather-items .weather-item {
@@ -221,6 +259,8 @@ header {
 /*周小时*/
 
 .week-title {
+    width: 98%;
+    margin: 0 auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -230,7 +270,26 @@ header {
     color: #171717;
     height: 40px;
     height: 6vh;
-    box-shadow: 0 2px 2px #999;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+    main {
+        background-color: #fff;
+        margin: -70px auto;
+        padding-top: 30px;
+        width: 90%;
+    }
+}
+
+@media all and (min-width: 1024px) {
+    main {
+        position: absolute;
+        z-index: -1;
+        width: 68%;
+        right: 0;
+    }
 }
 
 ::-webkit-scrollbar {
