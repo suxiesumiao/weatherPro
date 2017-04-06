@@ -164,6 +164,7 @@ header {
 }
 
 .weather-item>img {
+    height: 30px;
     flex: 1;
 }
 
