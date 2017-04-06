@@ -18,6 +18,7 @@ html {
 
 header {
     text-align: center;
+    height: 280px;
     height: 38vh;
     background: #00BBD2;
 }
@@ -51,7 +52,9 @@ header {
 
 .items {
     position: relative;
+    top: -20px;
     top: -3vh;
+    height: 40px;
     height: 6vh;
     display: flex;
     justify-content: space-around;
@@ -75,7 +78,6 @@ header {
     width: 3vmax;
     height: 3vmax;
     border-radius: 50%;
-    background-size: .3rem;
     background-repeat: no-repeat;
     background-position: center;
     background-color: #fff;
@@ -97,12 +99,6 @@ header {
     background-image: url('../images/pressure.svg');
 }
 
-.icon>img {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
 .note {
     display: block;
     text-align: center;
@@ -110,6 +106,7 @@ header {
     height: inherit;
     line-height: inherit;
     font-size: .3rem;
+    font-size: 12px;
 }
 
 .timeabout {
@@ -153,6 +150,7 @@ header {
     justify-content: space-around;
     align-items: center;
     border-bottom: 1px dashed #F88A20;
+    height: 60px;
     height: 8vh;
 }
 
@@ -184,8 +182,10 @@ header {
     justify-content: space-around;
     align-items: center;
     background-color: #EEFF41;
+    font-size: 16px;
     font-size: .5rem;
     text-align: left;
+    height: 40px;
     height: 6vh;
     box-shadow: 0 5px 10px #999;
 }
