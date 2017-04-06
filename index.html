@@ -16,7 +16,7 @@
     <div id="app">
         <header>
             <div class="main-describe">
-                <img class="main-weather-pic" src="http://p4.music.126.net/TD7iksMNalZs05om42ZrhQ==/18742275208937029.jpg?param=200y200" alt="">
+                <img class="main-weather-pic" v-bind:src=`http://openweathermap.org/img/w/${currentWeatherData.weather[0].icon}.png` alt="">
                 <!--<i class="owf owf-200 main-weather-pic"></i>-->
                 <div class="descbibe">
                     <span v-cloak class="temperature">{{ currentWeatherData.main.temp }}℃</span>
@@ -45,13 +45,12 @@
             <div class="item animated bounce timeabout" @click="changeTime">
                 <span v-if="isDaily" v-cloak class="note calendar"><i>{{ getWeek(currentWeatherData.dt).singleDate }}</i></span>
                 <span v-else class="note clock"></span>
-                <div v-cloak class="icon"></div>
             </div>
         </div>
         <main>
             <div v-if="isDaily" class="weather-items">
                 <div v-for="item in dailyWeatherData.list" class="weather-item">
-                    <img src="images/clouds.svg" alt="">
+                    <img v-bind:src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="">
                     <div class="weather-item-details">
                         <h3 v-cloak class="weather-item-desc">{{ item.weather[0].description }}</h3>
                         <span v-cloak class="temp-high">{{ item.temp.max }}℃-</span>
@@ -66,11 +65,11 @@
             <div v-else class="weather-items">
                 <div class="container" v-for="items in hourlyWeatherData">
                     <div class="week-title">
-                        <span>{{ getWeek(items.hourly[0].dt).weekName }}</span>
-                        <time>{{ getWeek(items.hourly[0].dt).date }}</time>
+                        <span v-cloak>{{ getWeek(items.hourly[0].dt).weekName }}</span>
+                        <time v-cloak>{{ getWeek(items.hourly[0].dt).date }}</time>
                     </div>
                     <div v-for="item in items.hourly" class="weather-item">
-                        <img src="images/clouds.svg" alt="">
+                        <img v-bind:src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="">
                         <div class="weather-item-details">
                             <h3 v-cloak class="weather-item-desc">{{ item.weather[0].description }}</h3>
                             <span v-cloak class="temp-high">{{ item.main.temp_max }}℃-</span>
