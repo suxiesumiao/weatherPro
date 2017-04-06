@@ -163,6 +163,19 @@ header {
     height: 8vh;
 }
 
+.weather-item>img {
+    flex: 1;
+}
+
+.weather-item-details {
+    flex: 1;
+}
+
+.weather-item-timeabout {
+    text-align: center;
+    flex: 2;
+}
+
 .weather-items .weather-item:last-child {
     border-bottom: 1px solid #fff;
 }
