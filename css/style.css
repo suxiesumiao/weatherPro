@@ -76,9 +76,13 @@ header {
 
 .item>.icon {
     position: absolute;
+    top: -6px;
     top: -1vmax;
+    right: -6px;
     right: -1vmax;
+    width: 20px;
     width: 3vmax;
+    height: 20px;
     height: 3vmax;
     border-radius: 50%;
     background-repeat: no-repeat;
@@ -113,9 +117,11 @@ header {
 }
 
 .timeabout {
+    width: 50px;
     width: 7vmax;
+    height: 50px;
     height: 7vmax;
-    border-radius: 3.5vmax;
+    border-radius: 50%;
     background-color: #EEFF41;
 }
 
