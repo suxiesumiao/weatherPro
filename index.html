@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/owfont-regular.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>天气应用</title>
+
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="main-describe">
+                <img class="main-weather-pic" src="http://p4.music.126.net/TD7iksMNalZs05om42ZrhQ==/18742275208937029.jpg?param=200y200" alt="">
+                <!--<i class="owf owf-200 main-weather-pic"></i>-->
+                <div class="descbibe">
+                    <span v-cloak class="temperature">{{ currentWeatherData.main.temp }}℃</span>
+                    <span v-cloak class="weathernote">{{ currentWeatherData.weather[0].main }}</span>
+                    </span>
+                </div>
+        </header>
+        <div class="items">
+            <div class="item animated bounce">
+                <span v-cloak class="note">{{ currentWeatherData.main.humidity }}</span>
+                <div class="icon humidity">
+                </div>
+            </div>
+            <div class="item animated bounce">
+                <span v-cloak class="note">{{ currentWeatherData.wind.speed }}</span>
+                <div class="icon speed"></div>
+            </div>
+            <div class="item animated bounce">
+                <span v-cloak class="note">{{ currentWeatherData.clouds.all }}</span>
+                <div class="icon all"></div>
+            </div>
+            <div class="item animated bounce">
+                <span v-cloak class="note">{{ currentWeatherData.main.pressure }}</span>
+                <div class="icon pressure"></div>
+            </div>
+            <div class="item animated bounce timeabout" @click="changeTime">
+                <span v-if="isDaily" v-cloak class="note calendar"><i>{{ getWeek(currentWeatherData.dt).singleDate }}</i></span>
+                <span v-else class="note clock"></span>
+                <div v-cloak class="icon timeabout"></div>
+            </div>
+        </div>
+        <main>
+            <div v-if="isDaily" class="weather-items">
+                <div v-for="item in dailyWeatherData.list" class="weather-item">
+                    <img src="images/clouds.svg" alt="">
+                    <div class="weather-item-details">
+                        <h3 v-cloak class="weather-item-desc">{{ item.weather[0].description }}</h3>
+                        <span v-cloak class="temp-high">{{ item.temp.max }}℃-</span>
+                        <span v-cloak class="temp-low">{{ item.temp.min }}℃</span>
+                    </div>
+                    <div class="weather-item-timeabout">
+                        <h3 v-cloak class="weather-item-desc">{{ getWeek(item.dt).weekName }}</h3>
+                        <time v-cloak>{{ getWeek(item.dt).date }}</time>
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                asdas
+            </div>
+        </main>
+        </div>
+        <script src="http://cdn.bootcss.com/axios/0.15.3/axios.min.js"></script>
+        <script src="http://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+        <script src="js/script.js"></script>
+</body>
+
+</html>
