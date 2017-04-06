@@ -82,9 +82,9 @@ header {
 .items {
     position: relative;
     top: -20px;
-    top: -3vh;
+    top: -3vmax;
     height: 40px;
-    height: 6vh;
+    height: 6vmax;
     display: flex;
     justify-content: space-around;
     align-items: center;
