@@ -14,7 +14,6 @@ html {
 
 #app {
     width: 100%;
-    height: 100vh;
 }
 
 header {
@@ -25,7 +24,6 @@ header {
 
 .main-describe {
     height: inherit;
-    width: inherit;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -39,7 +37,6 @@ header {
 
 .descbibe {
     display: flex;
-    flex-direction: column;
     color: #fff;
 }
 
@@ -66,7 +63,7 @@ header {
     width: 6vmax;
     height: 6vmax;
     line-height: 6vmax;
-    border-radius: 50%;
+    border-radius: 3vmax;
     box-shadow: 0 0 20px #333;
     background-color: #07A4B5;
 }
@@ -118,6 +115,7 @@ header {
 .timeabout {
     width: 7vmax;
     height: 7vmax;
+    border-radius: 3.5rem;
     background-color: #EEFF41;
 }
 
