@@ -75,7 +75,7 @@ header {
     width: 3vmax;
     height: 3vmax;
     border-radius: 50%;
-    background-size: 2.4vmax;
+    background-size: .3rem;
     background-repeat: no-repeat;
     background-position: center;
     background-color: #fff;
@@ -115,7 +115,7 @@ header {
 .timeabout {
     width: 7vmax;
     height: 7vmax;
-    border-radius: 3.5rem;
+    border-radius: 3.5vmax;
     background-color: #EEFF41;
 }
 
