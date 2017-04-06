@@ -63,10 +63,13 @@ header {
 
 .item {
     position: relative;
+    width: 50px;
     width: 6vmax;
+    height: 50px;
     height: 6vmax;
+    line-height: 50px;
     line-height: 6vmax;
-    border-radius: 3vmax;
+    border-radius: 50%;
     box-shadow: 0 0 20px #333;
     background-color: #07A4B5;
 }
