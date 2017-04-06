@@ -1,7 +1,7 @@
 let app = new Vue({
     el: '#app',
     data: {
-        currentCity: 'Paris',
+        currentCity: 'Beijing',
         begin: 'http://api.openweathermap.org/data/2.5/',
         id: '7c5219469d1d3aa869d2599559d26fc1',
         // 当前实时天气数据
@@ -28,11 +28,19 @@ let app = new Vue({
         // 每日天气数据
         dailyWeatherData: {},
         // 每日实时天气数据
-        hourlyWeatherData: []
+        hourlyWeatherData: [],
+        // 周 中英表
+        weekTable: {
+            "Mon": "周一",
+            "Tue": "周二",
+            "Wed": "周三",
+            "Thu": "周四",
+            "Fri": "周五",
+            "Sat": "周六",
+            "Sun": "周天"
+        }
     },
-    computed: {
-
-    },
+    computed: {},
     methods: {
         // 点击calendar按钮或是时间按钮转换显示内容
         changeTime: function() {
@@ -42,7 +50,7 @@ let app = new Vue({
         getWeek: function(number) {
             let week = new Date(number * 1000).toDateString().split(' ')
             return {
-                weekName: week[0],
+                weekName: this.weekTable[week[0]],
                 date: week[1] + "-" + week[2],
                 singleDate: week[2]
             }
@@ -89,8 +97,7 @@ let app = new Vue({
             // 每日小时天气预报
             let hourlyUrl = `${this.begin}forecast?q=${this.currentCity}&appid=${this.id}&units=metric&lang=zh_cn`
             axios.get(hourlyUrl).then(function(response) {
-                that.dailyWeatherData = that.analyArray(response.data.list)
-                console.log(that.dailyWeatherData)
+                that.hourlyWeatherData = that.analyArray(response.data.list)
             })
 
         }

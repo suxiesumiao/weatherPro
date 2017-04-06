@@ -20,7 +20,7 @@
                 <!--<i class="owf owf-200 main-weather-pic"></i>-->
                 <div class="descbibe">
                     <span v-cloak class="temperature">{{ currentWeatherData.main.temp }}℃</span>
-                    <span v-cloak class="weathernote">{{ currentWeatherData.weather[0].main }}</span>
+                    <span v-cloak class="weathernote">{{ currentWeatherData.weather[0].description }}</span>
                     </span>
                 </div>
         </header>
@@ -63,8 +63,25 @@
                     </div>
                 </div>
             </div>
-            <div v-else>
-                asdas
+            <div v-else class="weather-items">
+                <div class="container" v-for="items in hourlyWeatherData">
+                    <div class="week-title">
+                        <span>{{ getWeek(items.hourly[0].dt).weekName }}</span>
+                        <time>1231</time>
+                    </div>
+                    <div v-for="item in items.hourly" class="weather-item">
+                        <img src="images/clouds.svg" alt="">
+                        <div class="weather-item-details">
+                            <h3 v-cloak class="weather-item-desc">{{ item.weather[0].description }}</h3>
+                            <span v-cloak class="temp-high">{{ item.main.temp_max }}℃-</span>
+                            <span v-cloak class="temp-low">{{ item.main.temp_min }}℃</span>
+                        </div>
+                        <div class="weather-item-timeabout">
+                            <h3 v-cloak class="weather-item-desc">{{ getWeek(item.dt).weekName }}</h3>
+                            <time v-cloak>{{ getWeek(item.dt).date }}</time>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         </div>

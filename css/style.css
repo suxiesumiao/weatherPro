@@ -115,10 +115,14 @@ header {
     font-size: .3rem;
 }
 
-.item.timeabout {
+.timeabout {
     width: 7vmax;
     height: 7vmax;
     background-color: #EEFF41;
+}
+
+.timeabout:hover {
+    cursor: pointer;
 }
 
 .calendar {
@@ -168,4 +172,18 @@ header {
 
 .weather-item-desc {
     color: #233;
+}
+
+
+/*周小时*/
+
+.week-title {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #EEFF41;
+    font-size: .5rem;
+    text-align: left;
+    height: 6vh;
+    box-shadow: 0 5px 10px #999;
 }
