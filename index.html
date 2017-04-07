@@ -104,7 +104,7 @@
         <button @click="cateOrArrow" class="fixedbutton" v-bind:class="{arrow:onArrow}" type="button"></button>
         <div class="searchPosition" v-bind:class="{slideUp:onSlideUp}">
             <div class="searchBox">
-
+                <input @keyup.enter="addCity" v-model.trim="newCity" type="search" placeholder="请输入你想要添加的城市,如:Beijing">
             </div>
             <div @click="backUp" class="backUp"></div>
         </div>

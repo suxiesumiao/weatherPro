@@ -1,11 +1,13 @@
 let CITIES_STORGE = 'weatherPro'
 let citiesStorge = {
+    // 回取本地城市名称数据
     fetch: function() {
         let cities = JSON.parse(localStorage.getItem(CITIES_STORGE) || [
             { 'name': 'Beijing' }
         ])
         return cities
     },
+    // 存储本地城市名称数据
     save: function(cities) {
         localStorage.setItem(CITIES_STORGE, JSON.stringify(cities))
     }
@@ -15,13 +17,15 @@ let app = new Vue({
     data: {
         // 当前城市(默认城市)
         currentCity: 'Beijing',
-        // cities: citiesStorge.fetch(),
-        cities: [
-            { "name": "Beijing" },
-            { "name": "Beijing" },
-            { "name": "Beijing" },
-            { "name": "Beijing" }
-        ],
+        cities: citiesStorge.fetch(),
+        // cities: [
+        //     { "name": "beijing" },
+        //     { "name": "jinan" },
+        //     { "name": "shanghai" },
+        //     { "name": "hangzhou" },
+        //     { "name": "shenzhen" }
+        // ],
+        newCity: '',
         begin: 'http://api.openweathermap.org/data/2.5/',
         id: '7c5219469d1d3aa869d2599559d26fc1',
         // 当前实时天气数据
@@ -128,6 +132,20 @@ let app = new Vue({
         // 把搜索展示框提拉回去的动作
         backUp: function() {
             this.onSlideUp = false
+        },
+        addCity: function() {
+            let cities = this.cities;
+            // 检测是否有重复的地理名称
+            // 如果有返回
+            for (let i = 0; i < cities.length; i++) {
+                if (cities[i].name === this.newCity.trim()) {
+                    return
+                }
+            }
+            cities.push({
+                "name": this.newCity
+            })
+            this.newCity = ""
         },
         init: function() {
             let that = this;
