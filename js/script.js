@@ -2,9 +2,7 @@ let CITIES_STORGE = 'weatherPro'
 let citiesStorge = {
     // 回取本地城市名称数据
     fetch: function() {
-        let cities = JSON.parse(localStorage.getItem(CITIES_STORGE) || [
-            { 'name': 'Beijing' }
-        ])
+        let cities = JSON.parse(localStorage.getItem(CITIES_STORGE))
         return cities
     },
     // 存储本地城市名称数据
@@ -17,14 +15,7 @@ let app = new Vue({
     data: {
         // 当前城市(默认城市)
         currentCity: 'Beijing',
-        cities: citiesStorge.fetch(),
-        // cities: [
-        //     { "name": "beijing" },
-        //     { "name": "jinan" },
-        //     { "name": "shanghai" },
-        //     { "name": "hangzhou" },
-        //     { "name": "shenzhen" }
-        // ],
+        cities: citiesStorge.fetch() || [{ 'name': 'Beijing' }],
         newCity: '',
         begin: 'http://api.openweathermap.org/data/2.5/',
         id: '7c5219469d1d3aa869d2599559d26fc1',
