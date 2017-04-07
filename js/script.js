@@ -1,13 +1,13 @@
-let CITIES_STORGE = 'weatherPro'
+const CITIES_STORAGE = 'weatherPro'
 let citiesStorge = {
     // 回取本地城市名称数据
     fetch: function() {
-        let cities = JSON.parse(localStorage.getItem(CITIES_STORGE))
+        let cities = JSON.parse(localStorage.getItem(CITIES_STORAGE))
         return cities
     },
     // 存储本地城市名称数据
     save: function(cities) {
-        localStorage.setItem(CITIES_STORGE, JSON.stringify(cities))
+        localStorage.setItem(CITIES_STORAGE, JSON.stringify(cities))
     }
 }
 let app = new Vue({
@@ -15,9 +15,13 @@ let app = new Vue({
     data: {
         // 当前城市(默认城市)
         currentCity: 'Beijing',
+        // 如果城市组取不到默认就是Beijing
         cities: citiesStorge.fetch() || [{ 'name': 'Beijing' }],
+        // 输入框输入的城市
         newCity: '',
+        // 通用字符
         begin: 'http://api.openweathermap.org/data/2.5/',
+        // openweathermap id
         id: '7c5219469d1d3aa869d2599559d26fc1',
         // 当前实时天气数据
         currentWeatherData: {
@@ -59,6 +63,7 @@ let app = new Vue({
         // 此时搜索框没有被拉下
         onSlideUp: true
     },
+    // 观测cities的变化
     watch: {
         cities: {
             handler: function(cities) {
@@ -68,6 +73,7 @@ let app = new Vue({
         }
     },
     computed: {},
+    // 方法
     methods: {
         // 点击calendar按钮或是时间按钮转换显示内容
         changeTime: function() {
@@ -93,6 +99,7 @@ let app = new Vue({
                 presTime: tempTime.toLocaleTimeString()
             }
         },
+        // 与analyArray 相关
         initArray: function(array, number) {
             return {
                 hourly: [
@@ -114,9 +121,12 @@ let app = new Vue({
             }
             return over
         },
+        // 得到是第几天
         getDay: function(string) {
             return new Date(Number(string) * 1000).toString().split(' ')[2]
         },
+        // 添加地点
+        // 引起搜索框下拉
         addlocation: function() {
             this.onSlideUp = true
         },
@@ -124,6 +134,7 @@ let app = new Vue({
         backUp: function() {
             this.onSlideUp = false
         },
+        // 增加城市
         addCity: function() {
             let cities = this.cities;
             // 检测是否有重复的地理名称
@@ -138,6 +149,11 @@ let app = new Vue({
             })
             this.newCity = ""
         },
+        // 删除一个城市
+        deleteCity: function() {
+
+        },
+        // 程序入口 初始化
         init: function() {
             let that = this;
 

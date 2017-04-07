@@ -25,24 +25,24 @@
             </div>
         </header>
         <div class="items">
-            <div class="item animated bounce">
+            <div class="item boxshadow animated bounce">
                 <span v-cloak class="note">{{ currentWeatherData.main.humidity }}</span>
                 <div class="icon humidity">
                 </div>
             </div>
-            <div class="item animated bounce">
+            <div class="item boxshadow animated bounce">
                 <span v-cloak class="note">{{ currentWeatherData.wind.speed }}</span>
                 <div class="icon speed"></div>
             </div>
-            <div class="item animated bounce">
+            <div class="item boxshadow animated bounce">
                 <span v-cloak class="note">{{ currentWeatherData.clouds.all }}</span>
                 <div class="icon all"></div>
             </div>
-            <div class="item animated bounce">
+            <div class="item boxshadow animated bounce">
                 <span v-cloak class="note">{{ currentWeatherData.main.pressure }}</span>
                 <div class="icon pressure"></div>
             </div>
-            <div class="item animated bounce timeabout" @click="changeTime">
+            <div class="item boxshadow animated bounce timeabout" @click="changeTime">
                 <span v-if="isDaily" v-cloak class="note calendar"><i>{{ getWeek(currentWeatherData.dt).singleDate }}</i></span>
                 <span v-else class="note clock"></span>
             </div>
@@ -64,7 +64,7 @@
             </div>
             <div v-else class="weather-items">
                 <div class="container" v-for="items in hourlyWeatherData">
-                    <div class="week-title">
+                    <div class="week-title boxshadow">
                         <span v-cloak>{{ getWeek(items.hourly[0].dt).weekName }}</span>
                         <time v-cloak>{{ getWeek(items.hourly[0].dt).date }}</time>
                     </div>
@@ -103,9 +103,17 @@
         <!-- 该按钮控制侧边栏的显示隐藏 -->
         <button @click="cateOrArrow" class="fixedbutton" v-bind:class="{arrow:onArrow}" type="button"></button>
         <div class="searchPosition" v-bind:class="{slideUp:onSlideUp}">
+            <!--搜索框-->
             <div class="searchBox">
-                <input @keyup.enter="addCity" v-model.trim="newCity" type="search" placeholder="请输入你想要添加的城市,如:Beijing">
+                <input class="boxshadow" @keyup.enter="addCity" v-model.trim="newCity" type="search" placeholder="请输入你想要添加的城市,如:Beijing">
             </div>
+            <div class="cityCards">
+                <div class="cityCard boxshadow" v-for="card in cities" class="cityCard">
+                    {{ card.name }}
+                    <div @click="deleteCity" class="deleteDot boxshadow"></div>
+                </div>
+            </div>
+            <!--返回按钮-->
             <div @click="backUp" class="backUp"></div>
         </div>
     </div>
