@@ -15,6 +15,7 @@
 <body>
     <div id="app">
         <header>
+            <h3 class="cityTitle">{{ upperCaseHeader }}</h3>
             <div class="main-describe">
                 <img class="main-weather-pic" v-bind:src=`http://openweathermap.org/img/w/${currentWeatherData.weather[0].icon}.png` alt="">
                 <!--<i class="owf owf-200 main-weather-pic"></i>-->
@@ -108,9 +109,9 @@
                 <input class="boxshadow" @keyup.enter="addCity" v-model.trim="newCity" type="search" placeholder="请输入你想要添加的城市,如:Beijing">
             </div>
             <div class="cityCards">
-                <div class="cityCard boxshadow" v-for="card in cities" class="cityCard">
-                    {{ card.name }}
-                    <div @click="deleteCity" class="deleteDot boxshadow"></div>
+                <div class="cityCard boxshadow" v-for="(card,index) in cities" class="cityCard">
+                    {{ card.name }}{{ index }}
+                    <div @click="deleteCity(index)" class="deleteDot boxshadow"></div>
                 </div>
             </div>
             <!--返回按钮-->

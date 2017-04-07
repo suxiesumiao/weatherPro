@@ -14,7 +14,7 @@ let app = new Vue({
     el: '#app',
     data: {
         // 当前城市(默认城市)
-        currentCity: 'Beijing',
+        currentCity: '',
         // 如果城市组取不到默认就是Beijing
         cities: citiesStorge.fetch() || [{ 'name': 'Beijing' }],
         // 输入框输入的城市
@@ -59,9 +59,9 @@ let app = new Vue({
             "Sun": "周天"
         },
         // 此时正处于oncategory
-        onArrow: true,
+        onArrow: false,
         // 此时搜索框没有被拉下
-        onSlideUp: true
+        onSlideUp: false
     },
     // 观测cities的变化
     watch: {
@@ -72,9 +72,17 @@ let app = new Vue({
             deep: true
         }
     },
-    computed: {},
+    computed: {
+        upperCaseHeader: function() {
+            return this.currentCity
+        }
+    },
     // 方法
     methods: {
+        // 找到当前城市组里的第一个城市
+        getCurrentCity: function() {
+            return this.cities[0].name
+        },
         // 点击calendar按钮或是时间按钮转换显示内容
         changeTime: function() {
             this.isDaily = !this.isDaily
@@ -144,20 +152,39 @@ let app = new Vue({
                     return
                 }
             }
-            cities.push({
-                "name": this.newCity
+            // 首字母大写化
+            let upperCase = this.newCity[0].toUpperCase()
+                // 添加到第一位置
+            cities.unshift({
+                "name": this.newCity.replace(/^\w/gi, upperCase)
             })
-            this.newCity = ""
+            this.newCity = "";
+            // 搜索增加的该城市的天气
+            this.init()
         },
         // 删除一个城市
-        deleteCity: function() {
+        deleteCity: function(index) {
+            let length = this.cities.length
+            if (length === 1) {
+                return
+            }
+            for (let i = 0; i < length; i++) {
+                if (index === i) {
+                    this.cities.splice(i, 1)
+                    break
+                }
+            }
+            // 如果删除的不是处于第一位的城市 不必重新搜索
+            if (this.currentCity !== this.cities[0].name) {
+                this.init()
+            }
 
         },
         // 程序入口 初始化
         init: function() {
             let that = this;
-
-            // 实时天气预报
+            that.currentCity = that.cities[0].name
+                // 实时天气预报
             let currentUrl = `${this.begin}weather?q=${this.currentCity}&appid=${this.id}&units=metric&lang=zh_cn`
             axios.get(currentUrl).then(function(response) {
                 that.currentWeatherData = response.data

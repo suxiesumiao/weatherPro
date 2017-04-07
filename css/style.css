@@ -41,8 +41,11 @@ header {
     }
 }
 
+.cityTitle {
+    color: #fff;
+}
+
 .main-describe {
-    height: inherit;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -213,9 +216,9 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px dashed #F88A20;
     height: 60px;
-    height: 6vmax;
+    height: 8vmax;
+    border-bottom: 1px dashed #F88A20;
 }
 
 .weather-item>img {
@@ -361,8 +364,8 @@ header {
 .searchPosition {
     position: fixed;
     width: 100%;
-    height: 80vh;
-    top: -80vh;
+    height: 100vh;
+    top: -120vh;
     background-color: #00BBD2;
     transition: all .3s ease-in-out;
 }
@@ -389,15 +392,15 @@ header {
 .cityCards {
     position: relative;
     width: 90%;
-    height: 450px;
+    max-height: 540px;
     overflow-y: scroll;
     margin: 20px auto 0;
 }
 
 .cityCard {
     position: relative;
-    width: 70%;
-    height: 100px;
+    width: 90%;
+    height: 180px;
     margin: 20px auto;
     border-radius: 3px;
     background-color: #fff;
