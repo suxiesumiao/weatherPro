@@ -1,7 +1,27 @@
+let CITIES_STORGE = 'weatherPro'
+let citiesStorge = {
+    fetch: function() {
+        let cities = JSON.parse(localStorage.getItem(CITIES_STORGE) || [
+            { 'name': 'Beijing' }
+        ])
+        return cities
+    },
+    save: function(cities) {
+        localStorage.setItem(CITIES_STORGE, JSON.stringify(cities))
+    }
+}
 let app = new Vue({
     el: '#app',
     data: {
+        // 当前城市(默认城市)
         currentCity: 'Beijing',
+        // cities: citiesStorge.fetch(),
+        cities: [
+            { "name": "Beijing" },
+            { "name": "Beijing" },
+            { "name": "Beijing" },
+            { "name": "Beijing" }
+        ],
         begin: 'http://api.openweathermap.org/data/2.5/',
         id: '7c5219469d1d3aa869d2599559d26fc1',
         // 当前实时天气数据
@@ -38,6 +58,18 @@ let app = new Vue({
             "Fri": "周五",
             "Sat": "周六",
             "Sun": "周天"
+        },
+        // 此时正处于oncategory
+        onArrow: true,
+        // 此时搜索框没有被拉下
+        onSlideUp: true
+    },
+    watch: {
+        cities: {
+            handler: function(cities) {
+                citiesStorge.save(cities)
+            },
+            deep: true
         }
     },
     computed: {},
@@ -45,6 +77,11 @@ let app = new Vue({
         // 点击calendar按钮或是时间按钮转换显示内容
         changeTime: function() {
             this.isDaily = !this.isDaily
+        },
+        // 点击左上角按钮切换状态
+        // 还包含控制侧边栏的显示隐藏功能
+        cateOrArrow: function() {
+            this.onArrow = !this.onArrow
         },
         // 获取周信息
         getWeek: function(number) {
@@ -84,6 +121,13 @@ let app = new Vue({
         },
         getDay: function(string) {
             return new Date(Number(string) * 1000).toString().split(' ')[2]
+        },
+        addlocation: function() {
+            this.onSlideUp = true
+        },
+        // 把搜索展示框提拉回去的动作
+        backUp: function() {
+            this.onSlideUp = false
         },
         init: function() {
             let that = this;

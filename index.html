@@ -83,6 +83,31 @@
                 </div>
             </div>
         </main>
+        <div class="slideBar" v-bind:class="{slideBarMove:!onArrow}">
+            <div class="imageContainer"></div>
+            <div class="storage">
+                <div class="cities stor">
+                    <div v-for="city in cities" class="city">
+                        <h4>{{ city.name }}</h4>
+                    </div>
+                </div>
+                <!--添加地理位置 引出下拉框-->
+                <div @click="addlocation" class="addLocation stor">
+                    addLocation
+                </div>
+                <div class="settings stor">
+                    asd
+                </div>
+            </div>
+        </div>
+        <!-- 该按钮控制侧边栏的显示隐藏 -->
+        <button @click="cateOrArrow" class="fixedbutton" v-bind:class="{arrow:onArrow}" type="button"></button>
+        <div class="searchPosition" v-bind:class="{slideUp:onSlideUp}">
+            <div class="searchBox">
+
+            </div>
+            <div @click="backUp" class="backUp"></div>
+        </div>
     </div>
     <script src="http://cdn.bootcss.com/axios/0.15.3/axios.min.js"></script>
     <script src="http://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
