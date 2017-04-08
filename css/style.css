@@ -212,13 +212,13 @@ header {
     }
 }
 
-.weather-items .weather-item {
+.weather-item {
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 60px;
     height: 8vmax;
-    border-bottom: 1px dashed #F88A20;
+    border-bottom: 1px solid rgba(236, 217, 217, 0.36);
 }
 
 .weather-item>img {
@@ -299,17 +299,20 @@ header {
 
 .fixedbutton {
     position: fixed;
-    width: 30px;
-    height: 30px;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
     top: 10px;
     left: 10px;
-    background-color: transparent;
+    background-color: #00bbd2;
     background-repeat: no-repeat;
+    background-position: center;
     /*默认下是箭头图标等待 切换*/
     background-image: url('../images/category.svg');
 }
 
 .arrow {
+    background-color: transparent;
     background-image: url('../images/arrow.svg');
 }
 
@@ -333,7 +336,7 @@ header {
 .imageContainer {
     width: 100%;
     height: 200px;
-    background-image: url('../images/mountain.jpg');
+    background-image: url('../images/mountain-2.svg');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: top;
@@ -345,17 +348,44 @@ header {
     flex-direction: column;
 }
 
-.stor {
-    border: 1px solid red;
-}
-
 .cities {
     display: flex;
     flex-direction: column;
 }
 
+.addLocation,
+.settings,
 .city {
-    border: 1px solid aqua;
+    margin-left: .4rem;
+    padding: .2rem 0 .2rem 1rem;
+    border-bottom: 1px solid #efe3e3;
+    font-size: 0.4rem;
+    font-weight: 200;
+    color: #484444;
+    background-image: url('../images/unselected.svg');
+}
+
+.city,
+.addLocation,
+.settings {
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: .5rem;
+}
+
+
+/*只有该城市被点击才会拥有.selected*/
+
+.city.selected {
+    background-image: url('../images/selected.svg');
+}
+
+.addLocation {
+    background-image: url('../images/location.svg');
+}
+
+.settings {
+    background-image: url('../images/settings.svg');
 }
 
 
@@ -438,6 +468,10 @@ header {
 
 .boxshadow {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.textshadow {
+    text-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 

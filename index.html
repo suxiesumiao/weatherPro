@@ -15,7 +15,7 @@
 <body>
     <div id="app">
         <header>
-            <h3 class="cityTitle">{{ upperCaseHeader }}</h3>
+            <h3 class="cityTitle textshadow">{{ upperCaseHeader }}</h3>
             <div class="main-describe">
                 <img class="main-weather-pic" v-bind:src=`http://openweathermap.org/img/w/${currentWeatherData.weather[0].icon}.png` alt="">
                 <!--<i class="owf owf-200 main-weather-pic"></i>-->
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div v-else class="weather-items">
-                <div class="container" v-for="items in hourlyWeatherData">
+                <div v-for="items in hourlyWeatherData" class="container">
                     <div class="week-title boxshadow">
                         <span v-cloak>{{ getWeek(items.hourly[0].dt).weekName }}</span>
                         <time v-cloak>{{ getWeek(items.hourly[0].dt).date }}</time>
@@ -89,20 +89,20 @@
             <div class="storage">
                 <div class="cities stor">
                     <div v-for="city in cities" class="city">
-                        <h4>{{ city.name }}</h4>
+                        <p>{{ city.name }}</p>
                     </div>
                 </div>
                 <!--添加地理位置 引出下拉框-->
                 <div @click="addlocation" class="addLocation stor">
-                    addLocation
+                    <p>AddLocation</p>
                 </div>
                 <div class="settings stor">
-                    asd
+                    Settings
                 </div>
             </div>
         </div>
         <!-- 该按钮控制侧边栏的显示隐藏 -->
-        <button @click="cateOrArrow" class="fixedbutton" v-bind:class="{arrow:onArrow}" type="button"></button>
+        <div @click="cateOrArrow" class="fixedbutton boxshadow" v-bind:class="{arrow:onArrow}" type="button"></div>
         <div class="searchPosition" v-bind:class="{slideUp:onSlideUp}">
             <!--搜索框-->
             <div class="searchBox">
@@ -118,8 +118,8 @@
             <div @click="backUp" class="backUp"></div>
         </div>
     </div>
-    <script src="http://cdn.bootcss.com/axios/0.15.3/axios.min.js"></script>
-    <script src="http://cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+    <script src="js/axios.js"></script>
+    <script src="js/vue.js"></script>
     <script src="js/script.js"></script>
 </body>
 

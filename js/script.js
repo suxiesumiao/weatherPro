@@ -22,7 +22,7 @@ let app = new Vue({
         // 通用字符
         begin: 'http://api.openweathermap.org/data/2.5/',
         // openweathermap id
-        id: '7c5219469d1d3aa869d2599559d26fc1',
+        id: '6b5537cd39eac5d2b02dce11bd27a9e4',
         // 当前实时天气数据
         currentWeatherData: {
             main: {
@@ -43,7 +43,7 @@ let app = new Vue({
         },
         // 是否显示每日天气数据
         // 默认只有两种天气显示
-        isDaily: false,
+        isDaily: true,
         // 每日天气数据
         dailyWeatherData: {},
         // 每日实时天气数据
@@ -59,7 +59,7 @@ let app = new Vue({
             "Sun": "周天"
         },
         // 此时正处于oncategory
-        onArrow: false,
+        onArrow: true,
         // 此时搜索框没有被拉下
         onSlideUp: false
     },
