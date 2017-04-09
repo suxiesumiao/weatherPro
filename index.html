@@ -15,7 +15,9 @@
 <body>
     <div id="app">
         <header>
-            <h3 class="cityTitle textshadow">{{ upperCaseHeader }}</h3>
+            <!--刷新按钮-->
+            <div @click="refresh" class="refresh"></div>
+            <h4 class="cityTitle textshadow">{{ upperCaseHeader }}</h4>
             <div class="main-describe">
                 <img class="main-weather-pic" :src=`http://openweathermap.org/img/w/${currentWeatherData.weather[0].icon}.png` alt="">
                 <!--<i class="owf owf-200 main-weather-pic"></i>-->
@@ -94,7 +96,7 @@
                 </div>
                 <!--添加地理位置 引出下拉框-->
                 <div @click="addlocation" class="addLocation stor">
-                    <p>add/delete Location</p>
+                    <p>add/delete location</p>
                 </div>
                 <!--<div class="settings stor">
                     Settings
@@ -103,7 +105,7 @@
         </div>
         <!-- 该按钮控制侧边栏的显示隐藏 -->
         <div @click="cateOrArrow" class="fixedbutton boxshadow" :class="{arrow:onArrow}"></div>
-        <div @click="refresh" class="refresh"></div>
+
         <div class="searchPosition" :class="{slideUp:onSlideUp}">
             <!--搜索框-->
             <div class="searchBox">

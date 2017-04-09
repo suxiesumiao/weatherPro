@@ -24,9 +24,35 @@ header {
     background: #00BBD2;
 }
 
+
+/*右上角刷新相关*/
+
+.refresh {
+    position: fixed;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    top: 10px;
+    right: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/refresh.svg');
+}
+
+.cityTitle {
+    color: #fff;
+}
+
 @media all and (min-width: 768px) and (max-width: 1023px) {
     body {
         background-color: #999;
+    }
+    header {
+        height: 50vh;
+    }
+    .cityTitle {
+        padding-top: .5rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -39,10 +65,10 @@ header {
         width: 32%;
         height: 100vh;
     }
-}
-
-.cityTitle {
-    color: #fff;
+    .cityTitle {
+        padding: 3rem 0;
+        font-size: 2rem;
+    }
 }
 
 .main-describe {
@@ -75,10 +101,10 @@ header {
         flex-direction: column;
     }
     .temperature {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     .weathernote {
-        font-size: 1.6rem;
+        font-size: 1rem;
     }
 }
 
@@ -273,6 +299,23 @@ header {
     border-radius: 2px;
 }
 
+
+/*左上角按钮相关*/
+
+.fixedbutton {
+    position: fixed;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 187, 210, 0.8);
+    background-repeat: no-repeat;
+    background-position: center;
+    /*默认下是箭头图标等待 切换*/
+    background-image: url('../images/category.svg');
+}
+
 @media all and (min-width: 768px) and (max-width: 1023px) {
     main {
         background-color: #fff;
@@ -292,43 +335,15 @@ header {
     .week-title {
         font-size: 1rem;
     }
-}
-
-
-/*左上角按钮相关*/
-
-.fixedbutton {
-    position: fixed;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    top: 10px;
-    left: 10px;
-    background-color: #00bbd2;
-    background-repeat: no-repeat;
-    background-position: center;
-    /*默认下是箭头图标等待 切换*/
-    background-image: url('../images/category.svg');
+    .fixedbutton {
+        width: 2rem;
+        height: 2rem;
+    }
 }
 
 .arrow {
     background-color: transparent;
     background-image: url('../images/arrow.svg');
-}
-
-
-/*右上角刷新相关*/
-
-.refresh {
-    position: fixed;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    top: 10px;
-    right: 10px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url('../images/refresh.svg');
 }
 
 .fixedbutton:hover,
@@ -412,6 +427,23 @@ header {
     background-image: url('../images/settings.svg');
 }
 
+@media all and (min-width: 768px) and (max-width: 1023px) {
+    .slideBar {
+        width: 50%;
+    }
+}
+
+@media all and (min-width: 1024px) {
+    .slideBar {
+        width: 32%;
+    }
+    .addLocation,
+    .settings,
+    .city {
+        font-size: .8rem;
+    }
+}
+
 
 /*搜索框相关*/
 
@@ -445,6 +477,7 @@ header {
 
 .cityCards {
     position: relative;
+    text-align: center;
     width: 90%;
     max-height: 540px;
     overflow-y: scroll;
@@ -453,10 +486,26 @@ header {
 
 .cityCard {
     position: relative;
+    display: inline-block;
     width: 90%;
     height: 140px;
-    margin: 20px auto;
+    margin: 20px 10px 0;
     border-radius: 3px;
+}
+
+@media all and (min-width: 768px) and (max-width: 1023px) {
+    .cityCard {
+        width: 30%;
+    }
+}
+
+@media all and (min-width: 1024px) {
+    .searchBox>input {
+        height: 1.5rem;
+    }
+    .cityCard {
+        width: 20%;
+    }
 }
 
 .cityCard:nth-last-child(1) {
