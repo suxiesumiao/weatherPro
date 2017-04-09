@@ -88,13 +88,13 @@
             <div class="imageContainer"></div>
             <div class="storage">
                 <div class="cities stor">
-                    <div v-for="city in cities" class="city">
+                    <div v-for="(city,index) in cities" @click="selectCity(index)" class="city" v-bind:class="{selected:city.isSelected}">
                         <p>{{ city.name }}</p>
                     </div>
                 </div>
                 <!--添加地理位置 引出下拉框-->
                 <div @click="addlocation" class="addLocation stor">
-                    <p>AddLocation</p>
+                    <p>add/delete Location</p>
                 </div>
                 <div class="settings stor">
                     Settings
