@@ -155,33 +155,35 @@ let app = new Vue({
             this.onSlideUp = false
         },
         // 增加一个城市
-        addCity: function() {
-            // 添加一个城市不会有重新init的步骤
-            // init都在deleteCity-selectCity以及程序初始化时候处理
-            let cities = this.cities;
+        addCity: _.debounce(
+            function() {
+                // 添加一个城市不会有重新init的步骤
+                // init都在deleteCity-selectCity以及程序初始化时候处理
+                let cities = this.cities;
 
-            // 检测是否有重复的地理名称
-            // 如果有返回
-            for (let i = 0; i < cities.length; i++) {
-                if (cities[i].name === this.newCity.trim()) {
+                // 检测是否有重复的地理名称
+                // 如果有返回
+                for (let i = 0; i < cities.length; i++) {
+                    if (cities[i].name === this.newCity.trim()) {
+                        return
+                    }
+                }
+                // 添加城市数量上限是7个
+                if (cities.length >= 7) {
                     return
                 }
-            }
-            // 添加城市数量上限是7个
-            if (cities.length >= 7) {
-                return
-            }
-            // 首字母大写化
-            let upperCase = this.newCity[0].toUpperCase();
-            // 添加到第一位置
-            cities.unshift({
-                "name": this.newCity.replace(/^\w/gi, upperCase),
-                'isSelected': false
-            })
-            this.newCity = "";
-            // 添加一个城市之后原先定位的城市的index会增加一个
-            this.currentCityIndex++
-        },
+                // 首字母大写化
+                let upperCase = this.newCity[0].toUpperCase();
+                // 添加到第一位置
+                cities.unshift({
+                    "name": this.newCity.replace(/^\w/gi, upperCase),
+                    'isSelected': false
+                })
+                this.newCity = "";
+                // 添加一个城市之后原先定位的城市的index会增加一个
+                this.currentCityIndex++
+            }, 500
+        ),
         // 删除一个城市
         deleteCity: function(index) {
             let length = this.cities.length;
@@ -225,6 +227,9 @@ let app = new Vue({
         // 刷新
         refresh: function() {
             this.init()
+        },
+        demask: function() {
+
         },
         // 程序入口 初始化
         init: function() {

@@ -19,8 +19,7 @@
             <div @click="refresh" class="refresh"></div>
             <h4 class="cityTitle textshadow">{{ upperCaseHeader }}</h4>
             <div class="main-describe">
-                <img class="main-weather-pic" :src=`http://openweathermap.org/img/w/${currentWeatherData.weather[0].icon}.png` alt="">
-                <!--<i class="owf owf-200 main-weather-pic"></i>-->
+                <img class="main-weather-pic" :src=`http://openweathermap.org/img/w/${currentWeatherData.weather[0].icon}.png` alt="天气图片">
                 <div class="descbibe">
                     <span v-cloak class="temperature">{{ currentWeatherData.main.temp }}℃</span>
                     <span v-cloak class="weathernote">{{ currentWeatherData.weather[0].description }}</span>
@@ -53,7 +52,7 @@
         <main>
             <div v-if="isDaily" class="weather-items">
                 <div v-for="item in dailyWeatherData.list" class="weather-item">
-                    <img :src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="">
+                    <img :src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="天气图片">
                     <div class="weather-item-details">
                         <h3 v-cloak class="weather-item-desc">{{ item.weather[0].description }}</h3>
                         <span v-cloak class="temp-high">{{ item.temp.max }}℃-</span>
@@ -72,7 +71,7 @@
                         <time v-cloak>{{ getWeek(items.hourly[0].dt).date }}</time>
                     </div>
                     <div v-for="item in items.hourly" class="weather-item">
-                        <img :src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="">
+                        <img :src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="天气图片">
                         <div class="weather-item-details">
                             <h3 v-cloak class="weather-item-desc">{{ item.weather[0].description }}</h3>
                             <span v-cloak class="temp-high">{{ item.main.temp_max }}℃-</span>
@@ -86,6 +85,8 @@
                 </div>
             </div>
         </main>
+        <!--mask被点击 此处与fixedbutton共用一个函数-->
+        <div @click="cateOrArrow" class="mask" :class="{masked: onArrow}"></div>
         <div class="slideBar" v-bind:class="{slideBarMove:!onArrow}">
             <div class="imageContainer"></div>
             <div class="storage">
@@ -103,9 +104,8 @@
                 </div>-->
             </div>
         </div>
-        <!-- 该按钮控制侧边栏的显示隐藏 -->
+        <!-- 该按钮控制侧边栏的显示隐藏 此处与mask共用一个函数-->
         <div @click="cateOrArrow" class="fixedbutton boxshadow" :class="{arrow:onArrow}"></div>
-
         <div class="searchPosition" :class="{slideUp:onSlideUp}">
             <!--搜索框-->
             <div class="searchBox">
@@ -113,7 +113,7 @@
             </div>
             <div class="cityCards">
                 <div v-cloak class="cityCard boxshadow" v-for="(card,index) in cities">
-                    <h5 class="cityCardTitle" v-cloak>{{ card.name }}</h5>
+                    <h5 v-cloak class="cityCardTitle">{{ card.name }}</h5>
                     <div @click="deleteCity(index)" class="deleteDot boxshadow"></div>
                 </div>
             </div>
@@ -121,6 +121,7 @@
             <div @click="backUp" class="backUp"></div>
         </div>
     </div>
+    <script src="js/lodash.js"></script>
     <script src="js/axios.js"></script>
     <script src="js/vue.js"></script>
     <script src="js/script.js"></script>

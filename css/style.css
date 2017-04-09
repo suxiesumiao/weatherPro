@@ -351,6 +351,24 @@ header {
     cursor: pointer;
 }
 
+.mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100vh;
+    transition: all .3s ease-in-out;
+}
+
+.mask:hover {
+    cursor: pointer;
+}
+
+.masked {
+    width: 100%;
+    background-color: rgba(0, 0, 0, .6);
+}
+
 
 /*侧边栏相关*/
 
