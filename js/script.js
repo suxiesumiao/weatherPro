@@ -15,10 +15,10 @@ let app = new Vue({
     data: {
         // 当前城市(默认城市)
         currentCity: '',
-        // 如果城市组取不到默认就是Beijing
+        // 如果城市组取不到默认就是Beijing一个城市
         cities: citiesStorge.fetch() || [{
             'name': 'Beijing',
-            'isSelected': false
+            'isSelected': true
         }],
         // 输入框输入的城市
         newCity: '',
@@ -177,19 +177,23 @@ let app = new Vue({
         deleteCity: function(index) {
             let length = this.cities.length;
             // 至少城市列表要有一个城市
-            if (length === 1) {
-                return
-            }
+            if (length === 1) { return }
             for (let i = 0; i < length; i++) {
                 if (index === i) {
                     this.cities.splice(i, 1)
                     break
                 }
             }
-            // 如果删除的不是处于第一位的城市 不必重新搜索
-            // 如果是 重新搜索
-            if (this.currentCity !== this.cities[0].name) {
-                this.init()
+            // 如果当前要删除的城市正好是处于城市列表选中的城市 那么让第一个城市选中
+            if (this.currentCityIndex === index) {
+                this.currentCityIndex = 0
+                this.currentCity = this.cities[0].name
+                this.cities[0].isSelected = true
+            }
+            // 如果当前要删除的城市的index序号小于处于选中状态的城市的序号
+            if (this.currentCityIndex > index) {
+                this.currentCityIndex--;
+                this.currentCity = this.cities[this.currentCityIndex].name
             }
         },
         // 在城市列表中选中一个城市
