@@ -64,7 +64,7 @@ let app = new Vue({
         // 侧边栏是否被拉出
         onArrow: false,
         // 搜索框是否被拉下
-        onSlideUp: true,
+        onSlideUp: false,
         // 用于标记当前选择的城市的index序号
         currentCityIndex: 0
     },
