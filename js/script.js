@@ -15,7 +15,7 @@ let app = new Vue({
     data: {
         // 当前城市(默认城市)
         currentCity: '',
-        // 如果城市组取不到默认就是Beijing一个城市
+        // 如果本地localStorage没有存储城市数据 默认就是Beijing一个城市
         cities: citiesStorge.fetch() || [{
             'name': 'Beijing',
             'isSelected': true
@@ -46,7 +46,7 @@ let app = new Vue({
         },
         // 是否显示每日天气数据
         // 默认只有两种天气显示
-        isDaily: true,
+        isDaily: false,
         // 每日天气数据
         dailyWeatherData: {},
         // 每日实时天气数据
@@ -61,8 +61,8 @@ let app = new Vue({
             "Sat": "周六",
             "Sun": "周天"
         },
-        // 此时正处于oncategory
-        onArrow: true,
+        // 侧边栏是否被拉出
+        onArrow: false,
         // 此时搜索框没有被拉下
         onSlideUp: false,
         // 用于标记当前选择的城市的index序号
@@ -86,7 +86,14 @@ let app = new Vue({
     methods: {
         // 找到当前城市组里的第一个城市
         getCurrentCity: function() {
-            return this.cities[0].name
+            // 在本地localstorage搜索处于选中状态的城市
+            for (let i = 0; i < this.cities.length; i++) {
+                if (this.cities[i].isSelected) {
+                    this.currentCity = this.cities[i].name
+                    this.currentCityIndex = i
+                    break
+                }
+            }
         },
         // 点击calendar按钮或是时间按钮转换显示内容
         changeTime: function() {
@@ -149,6 +156,8 @@ let app = new Vue({
         },
         // 增加一个城市
         addCity: function() {
+            // 添加一个城市不会有重新init的步骤
+            // init都在deleteCity-selectCity以及程序初始化时候处理
             let cities = this.cities;
 
             // 检测是否有重复的地理名称
@@ -188,13 +197,18 @@ let app = new Vue({
             if (this.currentCityIndex === index) {
                 this.currentCityIndex = 0
                 this.currentCity = this.cities[0].name
-                this.cities[0].isSelected = true
+                this.cities[0].isSelected = true;
+                // 第一个城市被选中了 搜索
+                this.init()
             }
             // 如果当前要删除的城市的index序号小于处于选中状态的城市的序号
             if (this.currentCityIndex > index) {
                 this.currentCityIndex--;
                 this.currentCity = this.cities[this.currentCityIndex].name
+                this.init()
             }
+            // 如果当前要删除的城市的index序号大于处于选中状态的城市的序号
+            // 不会有初始化的要求
         },
         // 在城市列表中选中一个城市
         selectCity: function(index) {
@@ -204,21 +218,15 @@ let app = new Vue({
             this.cities[index].isSelected = true;
             // currentCity更新
             this.currentCity = this.cities[index].name
-            this.currentCityIndex = index
+            this.currentCityIndex = index;
+            // 选中该城市后搜索该城市天气信息
+            this.init()
         },
         // 程序入口 初始化
         init: function() {
-            let that = this;
-            // 初始化时候在本地localstorage搜索处于选中状态的城市
-            for (let i = 0; i < that.cities.length; i++) {
-                if (that.cities[i].isSelected) {
-                    that.currentCity = that.cities[i].name
-                    that.currentCityIndex = i
-                    break
-                }
-            }
             // 实时天气预报
             let currentUrl = `${this.begin}weather?q=${this.currentCity}&appid=${this.id}&units=metric&lang=zh_cn`
+            let that = this;
             axios.get(currentUrl).then(function(response) {
                 that.currentWeatherData = response.data
             });
@@ -237,6 +245,8 @@ let app = new Vue({
         }
     },
     mounted: function() {
+        // 获取当前城市与搜索城市天气信息分开处理
+        this.getCurrentCity();
         this.init()
     }
 })
