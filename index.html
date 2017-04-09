@@ -17,7 +17,7 @@
         <header>
             <h3 class="cityTitle textshadow">{{ upperCaseHeader }}</h3>
             <div class="main-describe">
-                <img class="main-weather-pic" v-bind:src=`http://openweathermap.org/img/w/${currentWeatherData.weather[0].icon}.png` alt="">
+                <img class="main-weather-pic" :src=`http://openweathermap.org/img/w/${currentWeatherData.weather[0].icon}.png` alt="">
                 <!--<i class="owf owf-200 main-weather-pic"></i>-->
                 <div class="descbibe">
                     <span v-cloak class="temperature">{{ currentWeatherData.main.temp }}℃</span>
@@ -51,7 +51,7 @@
         <main>
             <div v-if="isDaily" class="weather-items">
                 <div v-for="item in dailyWeatherData.list" class="weather-item">
-                    <img v-bind:src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="">
+                    <img :src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="">
                     <div class="weather-item-details">
                         <h3 v-cloak class="weather-item-desc">{{ item.weather[0].description }}</h3>
                         <span v-cloak class="temp-high">{{ item.temp.max }}℃-</span>
@@ -70,7 +70,7 @@
                         <time v-cloak>{{ getWeek(items.hourly[0].dt).date }}</time>
                     </div>
                     <div v-for="item in items.hourly" class="weather-item">
-                        <img v-bind:src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="">
+                        <img :src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="">
                         <div class="weather-item-details">
                             <h3 v-cloak class="weather-item-desc">{{ item.weather[0].description }}</h3>
                             <span v-cloak class="temp-high">{{ item.main.temp_max }}℃-</span>
@@ -88,29 +88,30 @@
             <div class="imageContainer"></div>
             <div class="storage">
                 <div class="cities stor">
-                    <div v-for="(city,index) in cities" @click="selectCity(index)" class="city" v-bind:class="{selected:city.isSelected}">
-                        <p>{{ city.name }}</p>
+                    <div class="city" :class="{selected:city.isSelected}" v-for="(city,index) in cities" @click="selectCity(index)">
+                        <p v-cloak>{{ city.name }}</p>
                     </div>
                 </div>
                 <!--添加地理位置 引出下拉框-->
                 <div @click="addlocation" class="addLocation stor">
                     <p>add/delete Location</p>
                 </div>
-                <div class="settings stor">
+                <!--<div class="settings stor">
                     Settings
-                </div>
+                </div>-->
             </div>
         </div>
         <!-- 该按钮控制侧边栏的显示隐藏 -->
-        <div @click="cateOrArrow" class="fixedbutton boxshadow" v-bind:class="{arrow:onArrow}" type="button"></div>
-        <div class="searchPosition" v-bind:class="{slideUp:onSlideUp}">
+        <div @click="cateOrArrow" class="fixedbutton boxshadow" :class="{arrow:onArrow}"></div>
+        <div @click="refresh" class="refresh"></div>
+        <div class="searchPosition" :class="{slideUp:onSlideUp}">
             <!--搜索框-->
             <div class="searchBox">
                 <input class="boxshadow" @keyup.enter="addCity" v-model.trim="newCity" type="search" placeholder="请输入你想要添加的城市,如:Beijing">
             </div>
             <div class="cityCards">
-                <div class="cityCard boxshadow" v-for="(card,index) in cities" class="cityCard">
-                    {{ card.name }}{{ index }}
+                <div v-cloak class="cityCard boxshadow" v-for="(card,index) in cities">
+                    <h5 class="cityCardTitle" v-cloak>{{ card.name }}</h5>
                     <div @click="deleteCity(index)" class="deleteDot boxshadow"></div>
                 </div>
             </div>

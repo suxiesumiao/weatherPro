@@ -63,8 +63,8 @@ let app = new Vue({
         },
         // 侧边栏是否被拉出
         onArrow: false,
-        // 此时搜索框没有被拉下
-        onSlideUp: false,
+        // 搜索框是否被拉下
+        onSlideUp: true,
         // 用于标记当前选择的城市的index序号
         currentCityIndex: 0
     },
@@ -220,6 +220,10 @@ let app = new Vue({
             this.currentCity = this.cities[index].name
             this.currentCityIndex = index;
             // 选中该城市后搜索该城市天气信息
+            this.init()
+        },
+        // 刷新
+        refresh: function() {
             this.init()
         },
         // 程序入口 初始化

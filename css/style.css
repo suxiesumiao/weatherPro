@@ -317,6 +317,26 @@ header {
 }
 
 
+/*右上角刷新相关*/
+
+.refresh {
+    position: fixed;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    top: 10px;
+    right: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../images/refresh.svg');
+}
+
+.fixedbutton:hover,
+.refresh:hover {
+    cursor: pointer;
+}
+
+
 /*侧边栏相关*/
 
 .slideBar {
@@ -346,6 +366,10 @@ header {
     display: flex;
     font-size: .5rem;
     flex-direction: column;
+}
+
+.storage:hover {
+    cursor: pointer;
 }
 
 .cities {
@@ -433,7 +457,41 @@ header {
     height: 140px;
     margin: 20px auto;
     border-radius: 3px;
-    background-color: #fff;
+}
+
+.cityCard:nth-last-child(1) {
+    background-color: #f5be25;
+}
+
+.cityCard:nth-last-child(2) {
+    background-color: #f5f5f5;
+}
+
+.cityCard:nth-last-child(3) {
+    background-color: #0aa344;
+}
+
+.cityCard:nth-last-child(4) {
+    background-color: #565d80;
+}
+
+.cityCard:nth-last-child(5) {
+    background-color: #457ad1;
+}
+
+.cityCard:nth-last-child(6) {
+    background-color: #89929f;
+}
+
+.cityCard:nth-last-child(7) {
+    background-color: #f298de;
+}
+
+.cityCardTitle {
+    font-weight: 200;
+    font-size: .5rem;
+    padding: .2rem 0 .2rem .5rem;
+    color: #00bbd2;
 }
 
 
