@@ -19,6 +19,9 @@ let app = new Vue({
         cities: citiesStorge.fetch() || [{
             'name': 'Beijing',
             'isSelected': true
+        }, {
+            'name': 'Shanghai',
+            'isSelected': false
         }],
         // 输入框输入的城市
         newCity: '',
