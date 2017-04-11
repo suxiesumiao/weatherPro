@@ -15,10 +15,13 @@ let app = new Vue({
     data: {
         // 当前城市(默认城市)
         currentCity: '',
-        // 如果本地localStorage没有存储城市数据 默认就是Beijing一个城市
+        // 如果本地localStorage没有存储城市数据 默认就是Chengdu等3个城市
         cities: citiesStorge.fetch() || [{
-            'name': 'Beijing',
+            'name': 'Chengdu',
             'isSelected': true
+        }, {
+            'name': 'Beijing',
+            'isSelected': false
         }, {
             'name': 'Shanghai',
             'isSelected': false
