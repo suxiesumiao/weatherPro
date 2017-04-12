@@ -68,7 +68,7 @@ let app = new Vue({
             "Sun": "周天"
         },
         // 侧边栏是否被拉出
-        onArrow: false,
+        onArrow: true,
         // 搜索框是否被拉下
         onSlideUp: false,
         // 用于标记当前选择的城市的index序号
