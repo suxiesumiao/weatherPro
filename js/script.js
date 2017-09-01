@@ -29,7 +29,7 @@ let app = new Vue({
         // 输入框输入的城市
         newCity: '',
         // 通用字符
-        begin: 'http://api.openweathermap.org/data/2.5/',
+        begin: 'https://api.openweathermap.org/data/2.5/',
         // openweathermap id
         id: '6b5537cd39eac5d2b02dce11bd27a9e4',
         // 当前实时天气数据

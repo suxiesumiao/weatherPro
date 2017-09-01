@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta https-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/owfont-regular.css">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>天气应用</title>
 
@@ -19,7 +19,7 @@
             <div @click="refresh" class="refresh"></div>
             <h4 class="cityTitle textshadow">{{ upperCaseHeader }}</h4>
             <div class="main-describe">
-                <img class="main-weather-pic" :src=`http://openweathermap.org/img/w/${currentWeatherData.weather[0].icon}.png` alt="天气图片">
+                <img class="main-weather-pic" :src=`https://openweathermap.org/img/w/${currentWeatherData.weather[0].icon}.png` alt="天气图片">
                 <div class="descbibe">
                     <span v-cloak class="temperature">{{ currentWeatherData.main.temp }}℃</span>
                     <span v-cloak class="weathernote">{{ currentWeatherData.weather[0].description }}</span>
@@ -52,7 +52,7 @@
         <main>
             <div v-if="isDaily" class="weather-items">
                 <div v-for="item in dailyWeatherData.list" class="weather-item">
-                    <img :src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="天气图片">
+                    <img :src=`https://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="天气图片">
                     <div class="weather-item-details">
                         <h3 v-cloak class="weather-item-desc">{{ item.weather[0].description }}</h3>
                         <span v-cloak class="temp-high">{{ item.temp.max }}℃-</span>
@@ -71,7 +71,7 @@
                         <time v-cloak>{{ getWeek(items.hourly[0].dt).date }}</time>
                     </div>
                     <div v-for="item in items.hourly" class="weather-item">
-                        <img :src=`http://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="天气图片">
+                        <img :src=`https://openweathermap.org/img/w/${item.weather[0].icon}.png` alt="天气图片">
                         <div class="weather-item-details">
                             <h3 v-cloak class="weather-item-desc">{{ item.weather[0].description }}</h3>
                             <span v-cloak class="temp-high">{{ item.main.temp_max }}℃-</span>
