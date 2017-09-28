@@ -29,5 +29,5 @@ app.get('/', (req, res) => {
 
 // 将本地的文件 public 目录映射到 ／static , public 下的文件均可以 ／static 访问到
 app.use('/public', express.static(path.join(__dirname, 'public'))).listen(3000, () => {
-  console.log('it is running...');
+  console.log('it is running...', '& Press Ctrl + C to end it');
 });

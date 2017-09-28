@@ -1,18 +1,20 @@
 const CITIES_STORAGE = 'weatherPro'
 let citiesStorge = {
     // 回取本地城市名称数据
-    fetch: function() {
+    fetch: function () {
         let cities = JSON.parse(localStorage.getItem(CITIES_STORAGE))
         return cities
     },
     // 存储本地城市名称数据
-    save: function(cities) {
+    save: function (cities) {
         localStorage.setItem(CITIES_STORAGE, JSON.stringify(cities))
     }
 }
 let app = new Vue({
     el: '#app',
     data: {
+        //地理位置信息
+        geo: null,
         // 当前城市(默认城市)
         currentCity: '',
         // 如果本地localStorage没有存储城市数据 默认就是Chengdu等3个城市
@@ -77,21 +79,21 @@ let app = new Vue({
     // 观测cities的变化
     watch: {
         cities: {
-            handler: function(cities) {
+            handler: function (cities) {
                 citiesStorge.save(cities)
             },
             deep: true
         }
     },
     computed: {
-        upperCaseHeader: function() {
+        upperCaseHeader: function () {
             return this.currentCity
         }
     },
     // 方法
     methods: {
         // 找到当前城市组里的第一个城市
-        getCurrentCity: function() {
+        getCurrentCity: function () {
             // 在本地localstorage搜索处于选中状态的城市
             for (let i = 0; i < this.cities.length; i++) {
                 if (this.cities[i].isSelected) {
@@ -102,16 +104,16 @@ let app = new Vue({
             }
         },
         // 点击calendar按钮或是时间按钮转换显示内容
-        changeTime: function() {
+        changeTime: function () {
             this.isDaily = !this.isDaily
         },
         // 点击左上角按钮切换状态
         // 还包含控制侧边栏的显示隐藏功能
-        cateOrArrow: function() {
+        cateOrArrow: function () {
             this.onArrow = !this.onArrow
         },
         // 获取周信息
-        getWeek: function(number) {
+        getWeek: function (number) {
             let tempTime = new Date(number * 1000)
             let week = tempTime.toDateString().split(' ')
             return {
@@ -126,7 +128,7 @@ let app = new Vue({
             }
         },
         // 与analyArray 相关
-        initArray: function(array, number) {
+        initArray: function (array, number) {
             return {
                 hourly: [
                     array[number]
@@ -134,7 +136,7 @@ let app = new Vue({
             }
         },
         // 分析每日小时数据
-        analyArray: function(array) {
+        analyArray: function (array) {
             let over = []
             let start = this.initArray(array, 0)
             over.push(start)
@@ -148,21 +150,21 @@ let app = new Vue({
             return over
         },
         // 得到是第几天
-        getDay: function(string) {
+        getDay: function (string) {
             return new Date(Number(string) * 1000).toString().split(' ')[2]
         },
         // 添加地点
         // 引起搜索框下拉
-        addlocation: function() {
+        addlocation: function () {
             this.onSlideUp = true
         },
         // 把搜索展示框提拉回去的动作
-        backUp: function() {
+        backUp: function () {
             this.onSlideUp = false
         },
         // 增加一个城市
         addCity: _.debounce(
-            function() {
+            function () {
                 // 添加一个城市不会有重新init的步骤
                 // init都在deleteCity-selectCity以及程序初始化时候处理
                 let cities = this.cities;
@@ -191,7 +193,7 @@ let app = new Vue({
             }, 500
         ),
         // 删除一个城市
-        deleteCity: function(index) {
+        deleteCity: function (index) {
             let length = this.cities.length;
             // 至少城市列表要有一个城市
             if (length === 1) { return }
@@ -219,7 +221,7 @@ let app = new Vue({
             // 不会有初始化的要求
         },
         // 在城市列表中选中一个城市
-        selectCity: function(index) {
+        selectCity: function (index) {
             // 之前选中的城市变为非选中
             this.cities[this.currentCityIndex].isSelected = false;
             // 本城市被选中
@@ -231,37 +233,63 @@ let app = new Vue({
             this.init()
         },
         // 刷新
-        refresh: function() {
+        refresh: function () {
             this.init()
         },
-        demask: function() {
+        demask: function () {
 
         },
         // 程序入口 初始化
-        init: function() {
+        init: function () {
             // 实时天气预报
             let currentUrl = `${this.begin}weather?q=${this.currentCity}&appid=${this.id}&units=metric&lang=zh_cn`
             let that = this;
-            axios.get(currentUrl).then(function(response) {
+            axios.get(currentUrl).then(function (response) {
                 that.currentWeatherData = response.data
             });
 
             // 每日天气预报
             let weekUrl = `${this.begin}forecast/daily?q=${this.currentCity}&appid=${this.id}&units=metric&lang=zh_cn&cnt=16`
-            axios.get(weekUrl).then(function(response) {
+            axios.get(weekUrl).then(function (response) {
                 that.dailyWeatherData = response.data
             })
 
             // 每日小时天气预报
             let hourlyUrl = `${this.begin}forecast?q=${this.currentCity}&appid=${this.id}&units=metric&lang=zh_cn`
-            axios.get(hourlyUrl).then(function(response) {
+            axios.get(hourlyUrl).then(function (response) {
                 that.hourlyWeatherData = that.analyArray(response.data.list)
             })
+        },
+        getgeo: function () {
+            if (!'geolocation' in navigator) {
+                return;
+            }
+            let that = this;
+            function success(position) {
+                var geo = {
+                    "lat": position.coords.latitude,
+                    "lon": position.coords.longitude
+                }
+                that.geo = 'location=' + geo.lat + ',' + geo.lon;
+                var url = 'http://api.douban.com/v2/movie/top250?start=0&count=10'
+                // JSONP.get(url, {}, function (response) {
+                //     console.log(response.subjects)
+                // })
+                // axios.get(url).then(function (res) {
+                //     console.log(res)
+                // })
+                console.log(geo)
+            };
+            navigator.geolocation.getCurrentPosition(success);
         }
     },
-    mounted: function() {
+    created: function () {
         // 获取当前城市与搜索城市天气信息分开处理
         this.getCurrentCity();
-        this.init()
+        this.init();
+    },
+    mounted: function () {
+        // 准备请求地理位置
+        this.getgeo()
     }
 })

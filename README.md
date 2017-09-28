@@ -1,3 +1,13 @@
+# 下载(首先确保你有 `node.js` 环境)
+```
+npm install
+```
+# 运行
+
+```
+npm run begin
+```
+
 # weatherPro
 描述 : 天气预测升级版本。
 ## 要求

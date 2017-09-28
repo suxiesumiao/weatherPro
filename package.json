@@ -4,6 +4,7 @@
   "description": "sample weather station",
   "main": "index.js",
   "scripts": {
+    "begin": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
