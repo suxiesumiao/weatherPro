@@ -1,0 +1,22 @@
+{
+  "name": "weatherpro",
+  "version": "1.0.0",
+  "description": "sample weather station",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suxiesumiao/weatherPro.git"
+  },
+  "author": "suxiesumiao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suxiesumiao/weatherPro/issues"
+  },
+  "homepage": "https://github.com/suxiesumiao/weatherPro#readme",
+  "devDependencies": {
+    "express": "4.15.5"
+  }
+}
